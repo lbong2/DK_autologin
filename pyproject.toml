@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "auto-login"
+version = "0.1.0"
+description = ""
+authors = ["longbee2 <longbee46@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selenium = "^4.23.1"
+pyautogui = "^0.9.54"
+pyperclip = "^1.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
