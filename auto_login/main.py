@@ -1,15 +1,18 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
 import time 
 import pyautogui
 import pyperclip
 
 import auth 
+# 브라우저 꺼짐 방지 옵션
+chrome_options = Options()
+chrome_options.add_experimental_option("detach", True)
 
-
-iris_driver = webdriver.Chrome()
+iris_driver = webdriver.Chrome(options=chrome_options)
 iris_driver.get("https://iris.dongkuk.com/")
 
 id = iris_driver.find_element(By.CSS_SELECTOR, "#idtemp")

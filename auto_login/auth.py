@@ -5,7 +5,7 @@ from email.header import decode_header, make_header
 # 사용 전 구글 앱 비밀번호 설정해야 함.
 
 def getAuthNumber(mail, appPw, from_email):
-    server = imaplib.IMAP4_SSL("imap.gmail.com")  
+    server = imaplib.IMAP4_SSL("imap.gmail.com", 993)  
     server.login(mail, appPw)
     server.select("inbox")
 
