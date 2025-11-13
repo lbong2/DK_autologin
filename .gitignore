@@ -1,2 +1,5 @@
 .env
+config.ini
 auto_login/__pycache__/*
+build
+dist

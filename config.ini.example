@@ -1,0 +1,14 @@
+[iris]
+id = your_iris_id
+password = your_iris_password
+
+[auth]
+email = your_gmail_address
+app_password = your_gmail_app_password
+from_email = no_reply@worksmobile.com
+initial_delay = 5
+poll_delay = 5
+poll_retries = 12
+
+[selenium]
+headless = false

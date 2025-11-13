@@ -1,8 +1,16 @@
-## 환경 변수 설정
+## 설정 방법
 
-1. `.env.example`을 복사해 `.env` 파일을 만듭니다.
-2. 다음 값을 채웁니다.
-   - `IRIS_ID`, `IRIS_PASSWORD`: IRIS 포털 로그인 정보
-   - `AUTH_EMAIL`, `AUTH_APP_PASSWORD`: 2차 인증 메일을 수신하는 Gmail 계정과 앱 비밀번호
-   - `AUTH_FROM_EMAIL`(선택): 인증 메일 발신자. 기본값은 `no_reply@worksmobile.com`
-3. `poetry run python auto_login/main.py`로 실행하면 `.env` 값을 사용해 로그인합니다.
+1. `config.ini.example`을 복사해 실행 파일과 같은 위치에 `config.ini`를 만듭니다.
+2. `[iris]`, `[auth]`, `[selenium]` 섹션의 값을 실제 계정 정보와 환경에 맞게 채웁니다.
+   - `headless = true`로 두면 브라우저 창 없이 실행됩니다.
+   - 인증 메일이 늦게 온다면 `initial_delay`, `poll_delay`, `poll_retries`를 늘리세요.
+3. `poetry run python auto_login/main.py`(또는 PyInstaller로 만든 exe)를 실행합니다. `AUTO_LOGIN_CONFIG` 환경 변수를 설정하면 다른 경로의 설정 파일을 지정할 수 있습니다.
+
+## PyInstaller로 배포하기
+
+```
+poetry run pyinstaller --onefile --name iris-auto-login auto_login/main.py
+```
+
+- 빌드가 끝나면 `dist/iris-auto-login.exe`와 동일한 폴더에 `config.ini`를 복사해 줍니다.
+- Chrome 및 ChromeDriver가 설치되어 있어야 하며, 헤드리스 모드에서는 별도 창이 뜨지 않습니다.
