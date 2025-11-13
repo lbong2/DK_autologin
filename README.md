@@ -1,16 +1,32 @@
-## 설정 방법
+## 사용 방법
 
-1. `config.ini.example`을 복사해 실행 파일과 같은 위치에 `config.ini`를 만듭니다.
-2. `[iris]`, `[auth]`, `[selenium]` 섹션의 값을 실제 계정 정보와 환경에 맞게 채웁니다.
-   - `headless = true`로 두면 브라우저 창 없이 실행됩니다.
-   - 인증 메일이 늦게 온다면 `initial_delay`, `poll_delay`, `poll_retries`를 늘리세요.
-3. `poetry run python auto_login/main.py`(또는 PyInstaller로 만든 exe)를 실행합니다. `AUTO_LOGIN_CONFIG` 환경 변수를 설정하면 다른 경로의 설정 파일을 지정할 수 있습니다.
+준비물: 구글 메일
 
-## PyInstaller로 배포하기
+1. https://support.bespinglobal.com/ko/support/solutions/articles/73000545275--gmail-%EC%95%B1-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%83%9D%EC%84%B1%EB%B0%A9%EB%B2%95
+
+- app 비밀번호 설정 후 config.ini 파일 app_password 항목에 저장
+
+2. https://support.bespinglobal.com/ko/support/solutions/articles/73000545270--gmail-pop-%EB%B0%8F-imap-%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%98%EA%B8%B0
+
+- 구글 gmail imap 활성화
+
+3. config.ini 파일 생성 후 내용 저장 config.ini.example 참고
+
+4. config.ini 파일과 exe 파일 동일한 경로에 넣고 exe파일 실행
 
 ```
-poetry run pyinstaller --onefile --name iris-auto-login auto_login/main.py
-```
+[iris]
+id = your_iris_id
+password = your_iris_password
 
-- 빌드가 끝나면 `dist/iris-auto-login.exe`와 동일한 폴더에 `config.ini`를 복사해 줍니다.
-- Chrome 및 ChromeDriver가 설치되어 있어야 하며, 헤드리스 모드에서는 별도 창이 뜨지 않습니다.
+[auth]
+email = your_gmail_address
+app_password = your_gmail_app_password
+from_email = no_reply@worksmobile.com (고정)
+initial_delay = 5
+poll_delay = 5
+poll_retries = 12
+
+[selenium]
+headless = false
+```
